@@ -4,11 +4,10 @@ FactoryBot.define do
         status {["pending", "not paid", "complete"].sample}
         #image_receipt { }
         date { "10-10-2022"}
-        received_by { "persona apellido"}
-        account { " " } #recordar para que era este atributo
-        type_of_payment {["expense", "revenue"].sample}
+        #account { " " } #recordar para que era este atributo
+        #type_of_payment {["expense", "revenue"].sample}
         amount { 500 }
         type_of_expense {["services", "profesors", "vendors"].sample}
-        payment_type {["cash", "transaction"].sample}
+        #payment_type {["cash", "transaction"].sample}
     end
   end
