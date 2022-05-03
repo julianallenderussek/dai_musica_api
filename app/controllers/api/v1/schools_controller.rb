@@ -5,24 +5,24 @@ class Api::V1::SchoolsController < ApplicationController
         #render(json: { message: "Si jala la ruta" }, status: :ok)
     end
 
-    # def create 
-    #     #@user = User.create(first_name: params[:first_name] ,last_name: paramas[:last_name], email: params[:email], password: params[:password])
+    def create 
+         @school = School.create(name: params[:name])
     #     @payment = Payment.create(payment_params)
 
-    #     if @payment
-    #         render(json: @payment, status: :created)
+        if @school
+            render(json: @school, status: :created)
 
-    #     else 
-    #         render(json: { message: "There was an error creating profesor " } , status: :bad_request)
-    #     end
-    # end
+        else 
+             render(json: { message: "There was an error creating school  " } , status: :bad_request)
+         end
+    end
 
-    #def show
-    #     #debugger 
-    #     @school = school.find(params[:id])
-    #     render(json: @school, status: :ok)
-    # end
+    def show  
+        @school = School.find(params[:id])
+        render(json: @school, status: :ok)
+    end
 
+    #TODO: se copiaron las funciones de payment, falta cambiar las variables de "payment" a "school"
     # def destroy
     #     @payment = Payment.find(params[:id])
     #     if @payment.destroy!
@@ -43,9 +43,26 @@ class Api::V1::SchoolsController < ApplicationController
     #     end
 
     # end
+    #prueba para el Endpoint de Trendit borrar cuando termine de jugar
+    def friends 
+        #ya sabemos que params[:phone_numbers] nos regresa como tal el arreglo con los strings (numeros)
+        phone_numbers = params[:phone_numbers]
+        contacts = []
+        puts "encontrando tus contactos... "
+        for x in phone_numbers
+            student = Student.find_by(phone_number: x)
+            if student
+               contacts << student 
+            end
+        end
 
-    # private 
-    # def payment_params
-    #     params.require(:payment).permit(:status, :date, :method, :received_by, :account, :type_of_payment, :amount, :type_of_expense, :image_receipt)#agregar los parametros correctos
-    #   end
+        puts " size del array"
+        puts contacts.size
+        render(json: contacts, status: :ok)
+    end
+
+    private 
+    def school_params
+        params.require(:school).permit(:name)#agregar los parametros correctos
+    end
 end

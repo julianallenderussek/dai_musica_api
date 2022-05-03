@@ -9,8 +9,8 @@ class CreatePayments < ActiveRecord::Migration[7.0]
       t.string :type_of_payment
       t.integer :amount
       t.string :type_of_expense
-      t.uuid :payor
-      t.uuid :payee
+      t.uuid :payor_id
+      t.uuid :payee_id
       t.string :image_receipt
       t.references :school, null: false, foreign_key: true, type: :uuid
 

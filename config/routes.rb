@@ -11,7 +11,12 @@ Rails.application.routes.draw do
         resources :profesors
         resources :vendors
         resources :payments
-        
+
+        #get "/payments", to: "payments#index"
+
+        #dashboard
+        get "/active_students_number", to: "students#active_students_number"
+        #/schools/:school_id/student/active_students
       end
     end 
   end
