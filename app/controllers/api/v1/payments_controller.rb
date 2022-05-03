@@ -1,8 +1,7 @@
 class Api::V1::PaymentsController < ApplicationController
     def index
         @payments = Payment.all
-        render(json: @payments, status: :ok)
-        #render(json: { message: "Si jala la ruta" }, status: :ok)
+        render(json: { payments: @payments } ,status: :ok)
     end
 
     def create 

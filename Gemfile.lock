@@ -139,6 +139,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.2)
@@ -190,6 +192,7 @@ GEM
     rspec-support (3.11.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
+    sqlite3 (1.4.2)
     ssrf_filter (1.0.7)
     strscan (3.0.1)
     thor (1.2.1)
@@ -218,9 +221,11 @@ DEPENDENCIES
   faker
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.2)
   rspec-rails
   shoulda-matchers
+  sqlite3
   tzinfo-data
   webmock
 

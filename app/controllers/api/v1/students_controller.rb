@@ -38,6 +38,11 @@ class Api::V1::StudentsController < ApplicationController
         render(json: @student, status: :updated)
     end
 
+    def active_students_number
+        active_students = Student.where(status: "active").count
+        render(json: {active_students: active_students}, status: :ok)
+    end
+
     private 
     def student_params
         params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :country, :city, :instrument, :status)

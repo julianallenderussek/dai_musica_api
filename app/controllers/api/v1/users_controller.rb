@@ -4,6 +4,7 @@ class Api::V1::UsersController < ApplicationController
         render(json: @users, status: :ok)
         #render(json: { message: "Si jala la ruta" }, status: :ok)
     end
+    
 
     def create 
         #@user = User.create(first_name: params[:first_name] ,last_name: paramas[:last_name], email: params[:email], password: params[:password])
