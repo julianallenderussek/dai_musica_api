@@ -10,10 +10,9 @@ class Api::V1::ProfesorsController < ApplicationController
     end
 
     def create 
-        #@user = User.create(first_name: params[:first_name] ,last_name: paramas[:last_name], email: params[:email], password: params[:password])
-        @profesor = Profesor.create(profesor_params)
+        profesor = Profesor.create(profesor_params)
 
-        if @profesor
+        if profesor
             render(json: @profesor, status: :created)
 
         else 
@@ -22,28 +21,27 @@ class Api::V1::ProfesorsController < ApplicationController
     end
 
     def show
-        #debugger 
-        @profesor = Profesor.find(params[:id])
-        render(json: @profesor, status: :ok)
+        profesor = Profesor.find(params[:id])
+        render(json: profesor, status: :ok)
     end
 
     def destroy
-        @profesor = Profesor.find(params[:id])
-        if @profesor.destroy!
+        profesor = Profesor.find(params[:id])
+        if profesor.destroy!
             render(json: { message: "The profesor was deleted"}, status: :ok)
           else
-            render(json: { errors: @profesor.errors.full_messages }, status: :bad_request)
+            render(json: { errors: profesor.errors.full_messages }, status: :bad_request)
           end
     end
 
     def update
-        @profesor = Profesor.find(params[:id])
-        @profesor.update!(profesor_params)
-        render(json: @profesor, status: :updated)
+        profesor = Profesor.find(params[:id])
+        profesor.update!(profesor_params)
+        render(json: profesor, status: :updated)
     end
 
     private 
     def profesor_params
         params.require(:profesor).permit(:first_name, :last_name, :email, :phone_number, :country, :city, :instrument, :marketing, :modality, :status)
-      end
+    end
 end

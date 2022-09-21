@@ -6,15 +6,7 @@ class Api::V1::StudentsController < ApplicationController
     end
 
     def create 
-        #@user = User.create(first_name: params[:first_name] ,last_name: paramas[:last_name], email: params[:email], password: params[:password])
-        @student = Student.create(student_params)
-
-        if @student
-            render(json: @student, status: :created)
-
-        else 
-            render(json: { message: "There was an error creating student " } , status: :bad_request)
-        end
+        debugger
     end
 
     def show
@@ -40,6 +32,10 @@ class Api::V1::StudentsController < ApplicationController
 
     private 
     def student_params
-        params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :country, :city, :instrument, :status)
-      end
+        params[:student][:school_id] = params[:school_id]
+        params.require(:student).permit(
+            :first_name, :last_name, :email, :phone_number, :country, :city, :instrument, :status,
+            :profesor_id, :vendor_id, :school_id 
+        )
+    end
 end

@@ -1,8 +1,8 @@
 class Api::V1::VendorsController < ApplicationController
     def index
-        @vendors = Vendor.all
-        render(json: @vendors, status: :ok)
-        #render(json: { message: "Si jala la ruta" }, status: :ok)
+        vendors = Vendor.all
+        pp vendors
+        render(json: vendors, status: :ok)
     end
 
     def create 

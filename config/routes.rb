@@ -11,7 +11,6 @@ Rails.application.routes.draw do
         resources :profesors
         resources :vendors
         resources :payments
-        
       end
     end 
   end
